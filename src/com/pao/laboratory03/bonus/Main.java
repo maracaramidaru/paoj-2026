@@ -153,12 +153,58 @@ package com.pao.laboratory03.bonus;
  * === Excepții ===
  * TaskNotFoundException: Task-ul 'T999' nu a fost găsit
  */
+
 public class Main {
     public static void main(String[] args) {
         // TODO: implementează toți cei 10 pași de mai sus
         // Creează TOATE clasele necesare în acest pachet (bonus/)
         // Nu ai subpachete impuse — organizează cum consideri
+
+        TaskService service = TaskService.getInstance();
+
+        System.out.println("=== 1. Adaugare task-uri ===");
+        service.addTask("Fix login bug", Priority.CRITICAL);
+        service.addTask("Add dark mode", Priority.LOW);
+        service.addTask("Update docs", Priority.MEDIUM);
+        service.addTask("Fix memory leak", Priority.HIGH);
+        service.addTask("Refactor DB layer", Priority.HIGH);
+
+        System.out.println("=== 2. Asignare ===");
+        service.assignTask("T001", "Ana");
+        service.assignTask("T003", "Mihai");
+        service.assignTask("T004", "Elena");
+
+        System.out.println("=== 3. Schimbari status ===");
+        service.changeStatus("T001", Status.IN_PROGRESS);
+        service.changeStatus("T001", Status.DONE);
+        service.changeStatus("T003", Status.IN_PROGRESS);
+
+        try {
+            service.changeStatus("T001", Status.TODO); // Invalida
+        } catch (InvalidTransitionException e) {
+            System.out.println("Capturat: " + e.getMessage());
+        }
+
+        System.out.println("\n=== 4. Task-uri HIGH ===");
+        service.getTasksByPriority(Priority.HIGH).forEach(System.out::println);
+
+        System.out.println("\n=== 5. Sumar status ===");
+        System.out.println(service.getStatusSummary());
+
+        System.out.println("\n=== 6. Task-uri neasignate ===");
+        service.getUnassignedTasks().forEach(t -> System.out.println(t.getId() + ": " + t.getTitle()));
+
+        System.out.println("\n=== 7. Scor urgenta (baseDays=5) ===");
+        System.out.println("Total: " + service.getTotalUrgencyScore(5));
+
+        System.out.println("\n=== 8. Audit Log ===");
+        service.printAuditLog();
+
+        System.out.println("\n=== 10. Test TaskNotFound ===");
+        try {
+            service.assignTask("T999", "Nimeni");
+        } catch (TaskNotFoundException e) {
+            System.out.println("Eroare: " + e.getMessage());
+        }
     }
 }
-
-
