@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
     // Calea către fișierul cu date — relativă la rădăcina proiectului
-    private static final String FILE_PATH = "src/com/pao/laboratory08/tests/studenti.txt";
+    private static final String FILE_PATH = "C:\\Users\\marac\\IdeaProjects\\paoj1\\paoj-2026\\src\\com\\pao\\laboratory08\\tests\\studenti.txt";
 
     public static void main(String[] args) throws Exception {
         List<Student> studenti = citesteStudenti();
