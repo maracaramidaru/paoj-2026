@@ -97,3 +97,15 @@ public class Main {
         }
     }
 }
+//
+//5
+//STANDARD Laptop 2500.0 Alice
+//DISCOUNTED Headphones 200.0 20 Bob
+//GIFT Sticker Charlie
+//STANDARD Mouse 80.0 Alice
+//DISCOUNTED Keyboard 300.0 10 Dave
+//        STATS
+//FILTER 100
+//SORT
+//        SPECIAL
+//QUIT

@@ -19,21 +19,21 @@ public class Main {
                     try {
                         order.nextState();
                     } catch (OrderIsAlreadyFinalException e) {
-                        System.out.println("Comanda este in stare finala.");
+                        System.out.println("Order is already in a final state.");
                     }
                 }
                 case cancel -> {
                     try {
                         order.cancel();
                     } catch (CannotCancelFinalOrderException e) {
-                        System.out.println("Comanda este in stare finala.");
+                        System.out.println("Cannot cancel a final state order.");
                     }
                 }
                 case undo -> {
                     try {
                         order.undoState();
                     } catch (CannotRevertInitialOrderStateException e) {
-                        System.out.println("Nu există stare anterioară pentru undo.");
+                        System.out.println("Cannot revert initial order state.");
                     }
                 }
                 case QUIT -> {
